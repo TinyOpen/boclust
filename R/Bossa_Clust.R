@@ -6,10 +6,10 @@
 #' cluster step.
 #'
 #' @param data an original categorical data with n observations and p variables.
-#' @param data.pre an list obtained by \code{\link{BoosaSimi}} including original
+#' @param data.pre an list obtained by \code{\link{BossaSimi}} including original
 #' categorical data, similarity matrix, disimilarity matrix and transformed data,
 #' Bossa scores. It is recommended to calculate the data.pre first and then do
-#' \code{\link{BoosaClust}} in order to save time when trying to change parameters
+#' \code{\link{BossaClust}} in order to save time when trying to change parameters
 #' of this function.
 #' @param alpha A power scaling for Bossa scores, representing the weight of
 #' variable sigma value.
@@ -34,7 +34,7 @@
 #' @param lintype The agglomeration method to be used in \code{\link[stats]{hclust}}.
 #' This should be (an unambiguous abbreviation of) one of "ward.D", "ward.D2",
 #' "single", "complete", "average" and so on. The default is "ward.D2".
-#'
+#' @param perplexity A parameter of tsne
 #' @import  Rtsne
 #'
 #' @return An object including overlap clusters after merging and non-overlap
@@ -115,7 +115,7 @@ BossaClust <- function(data, data.pre = NULL, alpha = 1, p = c(0.9, 0.75, 0.5),
   # Do non-overlap clustering with recommended k and do test find different variables(genes)
   cell.hc.clust <- sapply(tree.min:tree.max, function(x) {
     hc.clust <- hclust(as.dist(data.pre$bossa.disimi), lintype)
-    order.clust <- OrderClust(hc.clust, k = x)
+    order.clust <- OrderClust(hc.clust, x)
     order.clust
   }) # it's a data.frame
 

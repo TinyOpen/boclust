@@ -11,17 +11,19 @@ Authors@R: c(person("Peng", "Zhang",
              email = "pengz@zju.edu.cn", 
              role = c("aut")),
              person("Kaixiu", "Jin",
-             email = "jinkaixiu@zju.edu.cn",
+             email = "kathy9302fam@gmail.com",
              role = c("cre")))
 LazyData: true
 RoxygenNote: 6.0.1
 Imports:
     reshape2,
-    shiny,
     psych,
     Rtsne,
-    ggplot2,
     d3heatmap,
     genefilter,
-    venn
+    venn,
+    DT,
+    shiny,
+    ggplot2,
+    stats
     

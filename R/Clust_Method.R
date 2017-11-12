@@ -1,4 +1,4 @@
-#' Boosa Similarity
+#' Bossa Similarity
 #'
 #' Calculate the similarity matrix of Bossa scores which are obtained by boosting
 #' on single attribute.
@@ -114,7 +114,7 @@ BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = F
 #' similarity matrix to form clusters at different levels of within-cluster similarity.
 #' @param lin A tuning parameter to control the size of each overlap cluster before
 #' merging, smaller lin leads to larger cluster size.
-#'
+#' @import stats
 #' @return A list including two data.frame: overlap subclusters and cluster center for each.
 #' @export
 #'
@@ -250,7 +250,7 @@ OverlapClust <- function(data.simi, p = c(0.9, 0.75, 0.5), lin = 0.25) {
 #' Calculate the share matrix among overlap clusters.
 #'
 #' @param overlap.clu The result of overlap clustering.
-#'
+#' @keywords internal
 ClustShare <- function(overlap.clu) {
   m <- dim(overlap.clu)[2]
   share.mat <- matrix(0, m, m)
@@ -269,12 +269,10 @@ ClustShare <- function(overlap.clu) {
 #'
 #' Do a test before merging two overlap clusters. Pairwise comparisons are processed
 #' to show if those two clusters should be merged.
-#'
+#' @keywords internal
 #' @param data A data.frame with two columns of two overlap subclusters.
 #' @param r A numeric indicating tetrachoric correlation coefficient.
-#'
-#' @import psych
-#'
+
 TestMergeClust <- function(data, r) {
   n <- dim(data)[1]
   P <- list()
@@ -341,14 +339,14 @@ TestMergeClust <- function(data, r) {
 
 
 #' Determine key features of each overlap clusters.
-#'
 #' @param cdata Overlap clustering result.
 #' @param cri A tuning parameter, if p value smaller than cri, then reject
 #' the NULL hypothesis and merge overlap subclusters. And cri can be any numeric less
 #' than \code{1}, if \code{cri = 1} then the criteria will be reset to \code{0.05/N}
 #' (N is the numer of all overlap subcluster), and if \code{cri = 2} then the
 #' criteria \code{0.05/N(N-1)}.
-#'
+#' @keywords internal
+#' @importFrom psych tetrachoric
 #' @return A list including the recommend parameter to cut trees in HC \code{scrit0, scrit1},
 #' the seperate overlap subclusters \code{sep.clu}, and highly similar subclusters \code{mer.clu},
 #' statistics for merging \code{clu.math.stat}
@@ -364,7 +362,7 @@ KeyFeature <- function(cdata, cri, sum.clu) {
   m <- dim(cdata)[2]
 
   cmax <- max(apply(cdata, 2, max))
-  r <- tetrachoric(cdata, smooth = FALSE)$rho
+  r <- psych::tetrachoric(cdata, smooth = FALSE)$rho
 
   Stats <- matrix(0, m, m)
   Pval <- matrix(1, m, m)
@@ -456,7 +454,9 @@ KeyFeature <- function(cdata, cri, sum.clu) {
 #' @param sum.clu The number of overlap clusters
 #' @param data.simi Similarity matrix
 #' @param n The number of observations
-#'
+#' @import stats
+#' @keywords internal
+
 
 AssignLeftClust <- function(overlap.clu, sum.clu, data.simi, n = n){
   non.core.ind <- (1:n)[apply(overlap.clu[, -c(1, 2)], 1, sum) == 0]
@@ -483,11 +483,10 @@ AssignLeftClust <- function(overlap.clu, sum.clu, data.simi, n = n){
 #'
 #' With every recommended k, merge the overlap clusters depending on the distance
 #' between those.
-#'
 #' @param tree.size The label of each overlap clusters.
-#'
-ClustMerge <- function(tree.size,
-                       clu.hc = clu.hc, n = n, overlap.clu = overlap.clu, data.simi = data.simi)
+#' @keywords internal
+
+ClustMerge <- function(tree.size, clu.hc, n, overlap.clu, data.simi)
   {
   k <- max(tree.size)
   tree.merge.index <- cutree(clu.hc, k = k)
@@ -523,13 +522,8 @@ ClustMerge <- function(tree.size,
 #' @param hc an object of class hclust
 #' @param k number of cluster to be inferred from hc
 #'
-#' @importFrom stats cutree
-#'
-#' @examples
-#' hc <- hclust(dist(USArrests), 'ave')
-#' cutree(hc, 10)[hc$order]
-#' OrderClust(hc, 10)[hc$order]
-#'
+#' @keywords internal
+
 OrderClust <- function(hc, k) {
   clusts <- cutree(hc, k)
   labels <- names(clusts)
