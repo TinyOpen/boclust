@@ -200,8 +200,8 @@ bossa_interactive <- function(object){
       # tsne visualization for HC clustering
       output$hc.clust <- renderPlot({
         cluster <- hc.res()
-        ggplot(data = data.tsne, aes(x = X1, y = X2))+
-          geom_point(aes(color = cluster),
+        ggplot(data = data.tsne, aes_(x =~X1, y =~ X2))+
+          geom_point(aes_(color = ~cluster),
                      alpha = 0.8, size = 3.5 )+
           ggtitle("HC Clustering with Recommended K") +
           labs(x = "tsne.x", y = "tsne.y")+
@@ -223,9 +223,9 @@ bossa_interactive <- function(object){
         colnames(overlap.melt.data) <- c("cell", "overlap.size", "tsne.x",
                                          "tsne.y", "cluster.level", "belong")
         overlap.melt.data$overlap.size <- as.factor(overlap.melt.data$overlap.size)
-        overlap.melt.data.filter <- subset(overlap.melt.data, belong == 1)
-        ggplot(data = overlap.melt.data.filter, aes(x = tsne.x, y = tsne.y, group = cluster.level))+
-          geom_point(aes(size = overlap.size),
+        overlap.melt.data.filter <- overlap.melt.data[overlap.melt.data$belong == 1, ]
+        ggplot(data = overlap.melt.data.filter, aes_(x =~ tsne.x, y =~ tsne.y, group =~ cluster.level))+
+          geom_point(aes_(size =~ overlap.size),
                      alpha = 0.8, size = 3, color = "salmon")+
 
           facet_wrap(~cluster.level, ncol = 2)+
