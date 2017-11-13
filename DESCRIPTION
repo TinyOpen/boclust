@@ -24,6 +24,4 @@ Imports:
     ggplot2 (>= 2.2.1),
     stats,
     genefilter (>= 1.58.1)
-Suggests: knitr,
-    rmarkdown
-VignetteBuilder: knitr
+

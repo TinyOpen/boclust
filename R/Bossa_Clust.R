@@ -36,6 +36,10 @@
 #' "single", "complete", "average" and so on. The default is "ward.D2".
 #' @param perplexity A parameter of tsne
 #' @import  Rtsne
+#‘
+#' @examples
+#' data(bo.simu.data)
+#' object <- BossaClust(bo.simu.data)
 #'
 #' @return An object including overlap clusters after merging and non-overlap
 #' clusters, which can be showed by function \code{\link{bossa_interactive}}

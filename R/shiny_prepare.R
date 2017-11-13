@@ -113,7 +113,8 @@ FindOverlapDe <- function(clu.merge, U.score.non.pca, cell.name, n){
       if(length(del.samll) == k.sub) {
         clu.merge.whole.del <- c(whole.del, i) # delete the whole cluster
       } else {
-        clu.merge[[i]] <- clu.merge[[i]][,-del.samll]
+        for(j in del.samll)
+        clu.merge[[i]] <- clu.merge[[i]][, -j]
         }
     }
     clu.merge <- clu.merge[-whole.del]
