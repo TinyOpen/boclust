@@ -2,4 +2,11 @@
 
 language: R
 sudo: false
+language: r
+r: bioc-devel
+sudo: true
 cache: packages
+warnings_are_errors: false
+
+bioc_required: true
+bioc_use_devel: true
