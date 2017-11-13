@@ -19,6 +19,7 @@
 #'
 
 bossa_interactive <- function(object){
+
   k.max <- object$tree.max
   k.min <- object$tree.min
 
@@ -42,7 +43,10 @@ bossa_interactive <- function(object){
   max.sub.k <- dim(overlap.clu[[1]])[2] - 1
 
   ori.overlap <- as.data.frame(object$ori.overlap[,-c(1,2)])
+  try(if(dim(ori.overlap)[2] < 0) stop("no available clustering"))
+
   mer.clu <- object$mer.clu
+
   if(length(mer.clu) == 0) {
     mer.clu.zero <- TRUE
     mer.clu <- list(clus.warning = "there is no cluster to be merged")
@@ -56,7 +60,7 @@ bossa_interactive <- function(object){
   shinyApp(
 
     ui = navbarPage(
-      "BossaClust",
+      "BoosaClust",
       tabPanel("HC & heatmap",
                fluidPage(
                  fluidRow(
@@ -70,20 +74,20 @@ bossa_interactive <- function(object){
                           tabsetPanel(
                             tabPanel(
                               "HC tsne plot",
-                              plotOutput("hc.clust")
+                              plotOutput("hc.clust", height = 600)
                             ),
                             tabPanel(
                               "DE genes",
                               fluidRow(
                                 column(8,
                                        h4(textOutput("hint"))
-                                       )
+                                )
                               ),
                               fluidRow(
-                                column(10,
+                                column(8,
                                        d3heatmapOutput("heatmap.hc", height = 600)
                                 ),
-                                column(2,
+                                column(3,
                                        DT::dataTableOutput("hc.de.table")
                                 )
                               )
@@ -91,8 +95,8 @@ bossa_interactive <- function(object){
                           )
                    )
                  )
-                 )
-               ),
+               )
+      ),
 
 
       tabPanel("Overlap Clust & heatmap",
@@ -105,48 +109,48 @@ bossa_interactive <- function(object){
                mainPanel(width = 10,
                          tabsetPanel(
                            tabPanel("Overlap tsne plot",
-                                    plotOutput("overlap.clust")),
+                                    plotOutput("overlap.clust", height = 600)),
                            tabPanel("DE genes",
-                             fluidPage(
-                               fluidRow(
-                                 column(10,
-                                        selectInput("overlap.sub.k",
-                                                    label = paste("There are", max.sub.k, "subclusters"),
-                                                    choices = as.list(seq(1, max.sub.k, 1)),
-                                                    selected = "1"),
-                                        d3heatmapOutput("heatmap.overlap", height = 600)
+                                    fluidPage(
+                                      fluidRow(
+                                        column(8,
+                                               selectInput("overlap.sub.k",
+                                                           label = paste("There are", max.sub.k, "subclusters"),
+                                                           choices = as.list(seq(1, max.sub.k, 1)),
+                                                           selected = "1"),
+                                               d3heatmapOutput("heatmap.overlap", height = 550)
 
-                                 ),
-                               fluidRow(
-                                 column(2,
-                                        DT::dataTableOutput("over.de.table"))
-                               )
-                             )
+                                        ),
+                                        fluidRow(
+                                          column(3,
+                                                 DT::dataTableOutput("over.de.table"))
+                                        )
+                                      )
+                                    )
                            )
-                         )
                          )
                )
       ),
       if(!mer.clu.zero){
-      tabPanel("DE Before Merge",
-               fluidPage(
-                 fluidRow(
-                   column(7,
-                          selectInput(inputId = "mer.clu.name",
-                                      label = "find DE before merging:",
-                                      choices = mer.clu,
-                                      selected = mer.clu[[1]]),
-                          d3heatmapOutput("heatmap.bef.merge", height = 600)
-                   ),
-                   column(2,
-                          DT::dataTableOutput("bef.de.table")),
-                 column(3,
-                        plotOutput("de.bef.clust")
+        tabPanel("DE Before Merge",
+                 fluidPage(
+                   fluidRow(
+                     column(6,
+                            selectInput(inputId = "mer.clu.name",
+                                        label = "find DE before merging:",
+                                        choices = mer.clu,
+                                        selected = mer.clu[[1]]),
+                            d3heatmapOutput("heatmap.bef.merge", height = 550)
+                     ),
+                     column(4,
+                            DT::dataTableOutput("bef.de.table")),
+                     column(2,
+                            plotOutput("de.bef.clust")
+                     )
+                   )
                  )
-               )
-               )
-      )}
-      ),
+        )}
+    ),
 
 
     server = function(input, output, session) {
@@ -196,8 +200,8 @@ bossa_interactive <- function(object){
       # tsne visualization for HC clustering
       output$hc.clust <- renderPlot({
         cluster <- hc.res()
-        ggplot(data = data.tsne, aes_(x=~X1,y=~X2))+
-          geom_point(aes_(color = ~cluster),
+        ggplot(data = data.tsne, aes(x = X1, y = X2))+
+          geom_point(aes(color = cluster),
                      alpha = 0.8, size = 3.5 )+
           ggtitle("HC Clustering with Recommended K") +
           labs(x = "tsne.x", y = "tsne.y")+
@@ -219,9 +223,9 @@ bossa_interactive <- function(object){
         colnames(overlap.melt.data) <- c("cell", "overlap.size", "tsne.x",
                                          "tsne.y", "cluster.level", "belong")
         overlap.melt.data$overlap.size <- as.factor(overlap.melt.data$overlap.size)
-        overlap.melt.data.filter <- overlap.melt.data[which(overlap.melt.data$belong == 1),]
-        ggplot(data = overlap.melt.data.filter, aes_(x = ~tsne.x, y = ~tsne.y, group = ~cluster.level))+
-          geom_point(aes_(size = ~overlap.size),
+        overlap.melt.data.filter <- subset(overlap.melt.data, belong == 1)
+        ggplot(data = overlap.melt.data.filter, aes(x = tsne.x, y = tsne.y, group = cluster.level))+
+          geom_point(aes(size = overlap.size),
                      alpha = 0.8, size = 3, color = "salmon")+
 
           facet_wrap(~cluster.level, ncol = 2)+
@@ -245,8 +249,7 @@ bossa_interactive <- function(object){
         my.width <- dim(hc.de.plot.data)[2]
 
         d3heatmap(hc.de.plot.data, cexCol = 0.2 + 50/my.height,
-                  cexRow = 0.2 + 50/my.width,
-                  quoted = TRUE, dendrogram = "none")
+                  cexRow = 0.2 + 50/my.width, k_row = input$hc.k)
       })
 
 
@@ -259,16 +262,16 @@ bossa_interactive <- function(object){
       output$heatmap.overlap <- renderD3heatmap({
         my.height <- dim(heatmap.over())[1]
         my.width <- dim(heatmap.over())[2]
-        d3heatmap(heatmap.over(), dendrogram = "none",
+        d3heatmap(heatmap.over(),
                   cexCol = 0.2 + 50/my.height,
-                  cexRow = 0.2 + 50/my.width)
+                  cexRow = 0.2 + 50/my.width, dendrogram = "none")
       })
-
 
 
       output$de.bef.clust <- renderPlot({
         venn.data <- ori.overlap[, mer.ind()]
-        venn(venn.data, ilabels = TRUE, counts = TRUE, zcolor = "style", cexil = 0.8, cexsn = 1)
+        venn(venn.data, ilabels = TRUE, counts = TRUE,
+             zcolor = "style", cexil = 0.8, cexsn = 1)
       })
 
       output$heatmap.bef.merge <- renderD3heatmap({
@@ -284,14 +287,14 @@ bossa_interactive <- function(object){
         hc.de.table
       }))
 
-      output$over.de.table <- DT::renderDataTable(datatable({
+      output$over.de.table <- DT::renderDataTable(DT::datatable({
         gene.name <- rownames(heatmap.over())
         de.len <- length(gene.name)
         over.de.table <- data.frame(de.gene = gene.name)
         over.de.table
       }))
 
-      output$bef.de.table <- DT::renderDataTable(datatable({
+      output$bef.de.table <- DT::renderDataTable(DT::datatable({
         gene.name <- colnames(heatmap.bef())
         de.len <- length(gene.name)
         bef.de.table <- data.frame(de.gene = gene.name)
@@ -304,5 +307,5 @@ bossa_interactive <- function(object){
       })
 
     }
-  )
+      )
 }
