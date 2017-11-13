@@ -50,6 +50,8 @@ This should be (an unambiguous abbreviation of) one of "ward.D", "ward.D2",
 "single", "complete", "average" and so on. The default is "ward.D2".}
 
 \item{perplexity}{A parameter of tsne}
+
+\item{is.tsne}{A logical variable indicating if tsne visualization is necessary.}
 }
 \value{
 An object including overlap clusters after merging and non-overlap

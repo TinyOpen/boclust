@@ -44,7 +44,8 @@
 
 BossaClust <- function(data, data.pre = NULL, alpha = 1, p = c(0.9, 0.75, 0.5),
                        lin = 0.25, is.pca = TRUE, pca.sum.prop = 0.95, n.comp = 50,
-                       fix.pca.comp = FALSE, cri = 1, lintype = "ward.D2", perplexity = 30)
+                       fix.pca.comp = FALSE, cri = 1, lintype = "ward.D2",
+                       perplexity = 30)
 {
 
   # Check input data --------------------------
@@ -141,6 +142,7 @@ BossaClust <- function(data, data.pre = NULL, alpha = 1, p = c(0.9, 0.75, 0.5),
   mer.clu <- bef.de.plot.all$mer.clu
 
   # Do tsne for visualization--------------------------
+
   cat("\n\nDo tsne....\n")
   my.tsne <- Rtsne(data, perplexity = perplexity)
   cell = matrix(1:n, n)

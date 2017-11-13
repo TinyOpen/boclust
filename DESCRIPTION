@@ -1,9 +1,6 @@
 Package: boclust
-type: package
 Title: A clustering method based on boosting on single attribute
-Version: 1.0.0
-Author: Peng Zhang
-Maintainer: Kaixiu Jin <kathy9302fam@gmail.com>
+Version: 0.1.0
 Description: An overlap clustering algorithm for categorical ultra-dimention data.
 Depends: R (>= 3.3)
 License: GPL-2
@@ -11,20 +8,22 @@ Authors@R: c(person("Peng", "Zhang",
              email = "pengz@zju.edu.cn", 
              role = c("aut")),
              person("Kaixiu", "Jin",
-             email = "kathy9302fam@gmail.com",
-             role = c("cre")))
+             email = "jinkaixiu@zju.edu.cn",
+             role = c("aut", "cre")))
 LazyData: true
 RoxygenNote: 6.0.1
-biocViews: 
+biocViews: genefilter (>= 1.58.1)
 Imports:
     reshape2 (>= 1.4.2),
     psych (>= 1.7.3.21),
     Rtsne (>= 0.13),
     d3heatmap (>= 0.6.1.1),
-    genefilter (>= 1.58.1),
     venn (>= 1.2),
     DT (>= 0.2),
     shiny (>= 1.0.5),
     ggplot2 (>= 2.2.1),
-    stats
-    
+    stats,
+    genefilter (>= 1.58.1)
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

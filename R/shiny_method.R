@@ -38,15 +38,13 @@ bossa_interactive <- function(object){
   overlap.de.plot <- object$overlap.de.plot
   bef.de.plot <- object$bef.de.plot
 
-  overlap.melt.data.ori <- object$overlap.melt.data
-
   max.sub.k <- dim(overlap.clu[[1]])[2] - 1
 
   ori.overlap <- as.data.frame(object$ori.overlap[,-c(1,2)])
+  overlap.melt.data.ori <- object$overlap.melt.data
   try(if(dim(ori.overlap)[2] < 0) stop("no available clustering"))
 
   mer.clu <- object$mer.clu
-
   if(length(mer.clu) == 0) {
     mer.clu.zero <- TRUE
     mer.clu <- list(clus.warning = "there is no cluster to be merged")

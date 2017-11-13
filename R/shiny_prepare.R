@@ -105,14 +105,20 @@ FindOverlapDe <- function(clu.merge, U.score.non.pca, cell.name, n){
   }
 
   if(length(delete.clu) > 0){
+    whole.del <- vector()
     del.big <- unique(delete.clu[,1])
     for(i in del.big){
       del.samll <- delete.clu[delete.clu[,1] == i,2] + 1
       k.sub <- dim(clu.merge[[i]])[2] - 1
-      if(length(del.samll) == k.sub) clu.merge <- clu.merge[-i]# delete the whole cluster
-      clu.merge[[i]] <- clu.merge[[i]][,-del.samll]
+      if(length(del.samll) == k.sub) {
+        clu.merge.whole.del <- c(whole.del, i) # delete the whole cluster
+      } else {
+        clu.merge[[i]] <- clu.merge[[i]][,-del.samll]
+        }
     }
+    clu.merge <- clu.merge[-whole.del]
   }
+
   cat("done\n")
   return(list(overlap.de.plot = overlap.de.plot, clu.merge.1 = clu.merge))
 }
