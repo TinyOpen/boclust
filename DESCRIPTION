@@ -15,13 +15,13 @@ Authors@R: c(person("Peng", "Zhang",
              role = c("cre")))
 LazyData: true
 RoxygenNote: 6.0.1
-biocViews:
+biocViews: 
 Imports:
     reshape2 (>= 1.4.2),
-    psych (>= 1.7.8),
+    psych (>= 1.7.3.21),
     Rtsne (>= 0.13),
     d3heatmap (>= 0.6.1.1),
-    genefilter (>= 1.60.0),
+    genefilter (>= 1.58.1),
     venn (>= 1.2),
     DT (>= 0.2),
     shiny (>= 1.0.5),

@@ -10,3 +10,5 @@ warnings_are_errors: false
 
 bioc_required: true
 bioc_use_devel: true
+use_bioc: true
+
