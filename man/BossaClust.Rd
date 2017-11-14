@@ -64,5 +64,4 @@ cluster step.
 \examples{
 data(bo.simu.data)
 object <- BossaClust(bo.simu.data)
-
 }
