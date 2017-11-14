@@ -62,6 +62,10 @@ are obtained with several recommended cluster numbers(k) aftering processing the
 cluster step.
 }
 \examples{
+\dontrun{
 data(bo.simu.data)
 object <- BossaClust(bo.simu.data)
+bossa_interactive(object)
+}
+
 }
