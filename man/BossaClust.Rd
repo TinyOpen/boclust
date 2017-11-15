@@ -36,13 +36,13 @@ in order to make this proportion of variance. The default is \code{pca.sum.prop 
 \item{n.comp}{The number of components of PCA. The default is \code{n.comp = 50}.}
 
 \item{fix.pca.comp}{A numeric variable indicating whether choosing the fixed
-number of components or the fixed porpotion of variance and the default is to
-choose fixed porpotion.}
+number of components or the fixed proportion of variance and the default is to
+choose fixed proportion.}
 
 \item{cri}{A tuning parameter, if p value smaller than cri, then reject
 the NULL hypothesis and merge overlap sub-clusters. And cri can be any numeric less
 than \code{1}, if \code{cri = 1} then the criteria will be reset to \code{0.05/N}
-(N is the numer of all overlap sub-clusters), and if \code{cri = 2} then the
+(N is the number of all overlap sub-clusters), and if \code{cri = 2} then the
 criteria \code{0.05/N(N-1)}.}
 
 \item{lintype}{The agglomeration method to be used in \code{\link[stats]{hclust}}.

@@ -18,8 +18,8 @@ when processing the ultra-dimension data.}
 in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.}
 
 \item{fix.pca.comp}{A numeric variable indicating whether choosing the fixed
-number of components or the fixed porportion of variance and the default is to
-choose fixed porportion.}
+number of components or the fixed proportion of variance and the default is to
+choose fixed proportion.}
 
 \item{n.comp}{The number of components of PCA. The default is \code{n.comp = 50}.}
 

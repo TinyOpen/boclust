@@ -24,12 +24,12 @@
 #' in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.
 #' @param n.comp The number of components of PCA. The default is \code{n.comp = 50}.
 #' @param fix.pca.comp A numeric variable indicating whether choosing the fixed
-#' number of components or the fixed porpotion of variance and the default is to
-#' choose fixed porpotion.
+#' number of components or the fixed proportion of variance and the default is to
+#' choose fixed proportion.
 #' @param cri A tuning parameter, if p value smaller than cri, then reject
 #' the NULL hypothesis and merge overlap sub-clusters. And cri can be any numeric less
 #' than \code{1}, if \code{cri = 1} then the criteria will be reset to \code{0.05/N}
-#' (N is the numer of all overlap sub-clusters), and if \code{cri = 2} then the
+#' (N is the number of all overlap sub-clusters), and if \code{cri = 2} then the
 #' criteria \code{0.05/N(N-1)}.
 #' @param lintype The agglomeration method to be used in \code{\link[stats]{hclust}}.
 #' This should be (an unambiguous abbreviation of) one of "ward.D", "ward.D2",

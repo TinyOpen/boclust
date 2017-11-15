@@ -11,8 +11,8 @@
 #' in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.
 #' @param n.comp The number of components of PCA. The default is \code{n.comp = 50}.
 #' @param fix.pca.comp A numeric variable indicating whether choosing the fixed
-#' number of components or the fixed porportion of variance and the default is to
-#' choose fixed porportion.
+#' number of components or the fixed proportion of variance and the default is to
+#' choose fixed proportion.
 #' @param alpha A power scaling for Bossa scores, representing the weight of
 #' variable sigma value.
 #' @param pro.show A logical indicator whether show the details of the process.
