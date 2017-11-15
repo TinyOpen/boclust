@@ -16,3 +16,10 @@ all precomputed clusterings.
 \description{
 Runs interactive \code{shiny} session of \code{BOSSA} based on precomputed clusterings.
 }
+\examples{
+{
+\donttest{
+bossa_interactive(object)
+}
+}
+}

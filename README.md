@@ -32,15 +32,23 @@ bossa.change <- BossaSimi(sparse.data, is.pca = FALSE) # with low-dimensional da
 data.after <- bossa.change$U.score.non.pca # data after normalization
 ```
 
-Now, when it comes to your **high-dimentional** data, you can either use \`BossaClust' to get the final result:
+You can check after normalization, the first 4 cells which are actually from the same cluster 
+are more closer. The seperation between the first 4 cells and the last 4 cells is large enough to 
+get the correct clustering result.
 
 ``` r
-#
+d3heatmap(sparse.data) ## show heatmap of original data
+d3heatmap(data.after) ## show heatmap of bossa-normalized data 
+```
+
+Now, when it comes to your **high-dimentional** data, which is the target which `boclust` is designed for. You can either use `BossaClust` to get the final result:
+
+``` r
 object <- BossaClust(high.dim.data) # do normalization and clustering at the same time
 bossa_interactive(object) # use shiny frame to show the result
 ```
 
-Or, you can store the normalized data first, which is obtained from function 'BossaSimi', and then do the rest work.
+Or, you can store the normalized data first, which is obtained from function `BossaSimi`, and then do the rest work.
 
 ``` r
 pre.object <- BossaSimi(high.dim.data)

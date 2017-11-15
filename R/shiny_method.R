@@ -15,8 +15,13 @@
 #' plotOutput renderPlot selectInput shinyApp mainPanel sidebarPanel
 #' sliderInput tabPanel tabsetPanel updateSelectInput reactive renderText
 #' @name bossa_interactive
-#' @export
 #'
+#' @examples {
+#' \donttest{
+#' bossa_interactive(object)
+#' }
+#' }
+#' @export
 
 bossa_interactive <- function(object){
 
@@ -293,7 +298,7 @@ bossa_interactive <- function(object){
       }))
 
       output$bef.de.table <- DT::renderDataTable(DT::datatable({
-        gene.name <- colnames(heatmap.bef())
+        gene.name <- rownames(heatmap.bef())
         de.len <- length(gene.name)
         bef.de.table <- data.frame(de.gene = gene.name)
         bef.de.table

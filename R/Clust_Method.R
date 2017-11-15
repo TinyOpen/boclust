@@ -15,13 +15,27 @@
 #' choose fixed porpotion.
 #' @param alpha A power scaling for Bossa scores, representing the weight of
 #' variable sigma value.
+#' @param pro.show A logical indicator whether show the details of the process.
+#' @name BossaSimi
+#' @examples {
+#' ## generate sparse data from the toy model of CIDR
+#' sparse.data <- data.frame(g.1 = c(0, 5, 0, 6, 8, 6, 7, 7), g.2 = c(5, 0, 0, 0, 5, 7, 5, 7))
 #'
+#' ## with low-dimensional data, pca is uncessary
+#' bossa.change <- BossaSimi(sparse.data, is.pca = FALSE)
+#'
+#' ## data after normalization
+#' data.after <- bossa.change$U.score.non.pca
+#'
+#' ## similarity matrix of normalized data
+#' data.simi <- bossa.change$bossa.simi
+#' }
 #' @return An object including Bossa scores, Bossa disimilarity and Bossa similarity(for
 #' \code{\link{OverlapClust}}.
-#'
 #' @export
+
 BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = FALSE,
-                      n.comp = 50, alpha = 1) {
+                      n.comp = 50, alpha = 1, pro.show = FALSE) {
   if (!is.data.frame(data)) {
     if (is.matrix(data)) {
       data <- as.data.frame(data)
@@ -42,7 +56,7 @@ BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = F
 
   # if (!all(data == as.integer(data))) warning('the input data should be
   # binary or odinary')
-  cat("Do transformation...\n")
+  if(pro.show) cat("Do transformation...\n")
   U.score <- apply(data, 2, FUN = function(x) {
     expres <- rle(sort(x))
     expres.level <- expres$values
@@ -64,7 +78,7 @@ BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = F
   # Do pca to get small dimention version of U.score
   if (is.pca) {
     data.pca <- prcomp(U.score)
-    cat("done")
+    if(pro.show) cat("done")
 
     data.pca.sdev <- data.pca$sdev
     var.prop <- data.pca.sdev^2/sum(data.pca.sdev^2)
@@ -72,8 +86,8 @@ BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = F
     sum.prop.index <- which(var.prop.sum > pca.sum.prop)[1]
 
     if (!fix.pca.comp) {
-      cat(paste("need", sum.prop.index, "components to get", pca.sum.prop,
-                  "% variance"))
+      if(pro.show) cat(paste("need", sum.prop.index, "components to get", pca.sum.prop,
+                             "% variance"))
       data.pca.x <- data.pca$x[, 1:sum.prop.index]
     } else {
       if (n.comp > n | n.comp > p)
@@ -114,13 +128,22 @@ BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = F
 #' similarity matrix to form clusters at different levels of within-cluster similarity.
 #' @param lin A tuning parameter to control the size of each overlap cluster before
 #' merging, smaller lin leads to larger cluster size.
+#' @param pro.show A logical indicator whether show the details of the process.
 #' @import stats
 #' @return A list including two data.frame: overlap subclusters and cluster center for each.
-#' @export
+#' @examples {
+#' data(bo.simu.data)
 #'
-OverlapClust <- function(data.simi, p = c(0.9, 0.75, 0.5), lin = 0.25) {
+#' ## calculate the similarity matrix
+#' bossa.simi <- BossaSimi(bo.simu.data)$bossa.simi
+#'
+#' overlap.clust <- OverlapClust(bossa.simi)
+#' }
+#' @export
+
+OverlapClust <- function(data.simi, p = c(0.9, 0.75, 0.5), lin = 0.25, pro.show = FALSE) {
   n <- dim(data.simi)[1]
-  cat("Do overlap clustering for", n, "observations...")
+  if(pro.show) cat("Do overlap clustering for", n, "observations...")
   overlap.clu <- cbind(first.clu = rep(0, n), belong.layer = rep(0, n))
   n.clu <- 1
   clust <- list()
@@ -165,8 +188,8 @@ OverlapClust <- function(data.simi, p = c(0.9, 0.75, 0.5), lin = 0.25) {
 
 
       sum.new.idx <- sum(overlap.clu[unlist(clust[[n.clu]]), 1] == 0)
-      cat(paste(sum.new.idx, " new points are assigned to the current cluster, sum to ",
-                length(clust[[n.clu]]), " cells.\n", sep = ""))
+      if(pro.show) cat(paste(sum.new.idx, " new points are assigned to the current cluster, sum to ",
+                             length(clust[[n.clu]]), " cells.\n", sep = ""))
 
       if (sum.new.idx > 1 & n.clu <= 50) {
 
@@ -235,7 +258,7 @@ OverlapClust <- function(data.simi, p = c(0.9, 0.75, 0.5), lin = 0.25) {
     new <- sum.layer.1 - sum.layer.0
 
     if (l > 1)
-      cat(paste("After second search, there are", new, "new cells are assigned.\n\n", sep = " "))
+      if(pro.show) cat(paste("After second search, there are", new, "new cells are assigned.\n\n", sep = " "))
   }
 
   sum.clu <- dim(overlap.clu)[2] - 2

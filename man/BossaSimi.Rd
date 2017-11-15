@@ -5,7 +5,7 @@
 \title{Bossa Similarity}
 \usage{
 BossaSimi(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = FALSE,
-  n.comp = 50, alpha = 1)
+  n.comp = 50, alpha = 1, pro.show = FALSE)
 }
 \arguments{
 \item{data}{A data.frame or matrix(\code{n*p}) of original categorical data.}
@@ -25,6 +25,8 @@ choose fixed porpotion.}
 
 \item{alpha}{A power scaling for Bossa scores, representing the weight of
 variable sigma value.}
+
+\item{pro.show}{A logical indicator whether show the details of the process.}
 }
 \value{
 An object including Bossa scores, Bossa disimilarity and Bossa similarity(for
@@ -33,4 +35,19 @@ An object including Bossa scores, Bossa disimilarity and Bossa similarity(for
 \description{
 Calculate the similarity matrix of Bossa scores which are obtained by boosting
 on single attribute.
+}
+\examples{
+{
+## generate sparse data from the toy model of CIDR
+sparse.data <- data.frame(g.1 = c(0, 5, 0, 6, 8, 6, 7, 7), g.2 = c(5, 0, 0, 0, 5, 7, 5, 7))
+
+## with low-dimensional data, pca is uncessary
+bossa.change <- BossaSimi(sparse.data, is.pca = FALSE)
+
+## data after normalization
+data.after <- bossa.change$U.score.non.pca
+
+## similarity matrix of normalized data
+data.simi <- bossa.change$bossa.simi
+}
 }
