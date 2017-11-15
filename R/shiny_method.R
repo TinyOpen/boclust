@@ -17,9 +17,9 @@
 #' @name bossa_interactive
 #'
 #' @examples {
-#' \donttest{
-#' bossa_interactive(object)
-#' }
+#' data(bo.simu.data)
+#' object <- BossaClust(bo.simu.data)
+#' if(interactive()){bossa_interactive(object)}
 #' }
 #' @export
 

@@ -38,10 +38,8 @@
 #' @import  Rtsne
 #'
 #' @examples{
-#'
 #' data(bo.simu.data)
 #' object <- BossaClust(bo.simu.data)
-#' if(interactive()){bossa_interactive(object)}
 #' }
 #'
 #' @return An object including overlap clusters after merging and non-overlap

@@ -63,10 +63,8 @@ cluster step.
 }
 \examples{
 {
-
 data(bo.simu.data)
 object <- BossaClust(bo.simu.data)
-if(interactive()){bossa_interactive(object)}
 }
 
 }

@@ -18,8 +18,8 @@ Runs interactive \code{shiny} session of \code{BOSSA} based on pre-computed clus
 }
 \examples{
 {
-\donttest{
-bossa_interactive(object)
-}
+data(bo.simu.data)
+object <- BossaClust(bo.simu.data)
+if(interactive()){bossa_interactive(object)}
 }
 }
