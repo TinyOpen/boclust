@@ -28,7 +28,7 @@ merging, smaller lin leads to larger cluster size.}
 
 \item{is.pca}{A logical variable indicating if the Bossa scores should transformed
 to principle components and then calculate the similarity matrix. It is recommended
-when processing the ultra-dimention data.}
+when processing the ultra-dimension data.}
 
 \item{pca.sum.prop}{A numeric indicating how many components should be reserved
 in order to make this propotion of variance. The default is \code{pca.sum.prop =  0.95}.}
@@ -58,14 +58,15 @@ clusters, which can be showed by function \code{\link{bossa_interactive}}
 \description{
 With the previous calculated similarity matrix or the original categorical
 dataframe, the results of both overlap clustering and hierarchical clustering
-are obtained with several recommended cluster numbers(k) aftering processing the merge
+are obtained with several recommended cluster numbers(k) after processing the merge
 cluster step.
 }
 \examples{
 {
-    data(bo.simu.data)
-    object <- BossaClust(bo.simu.data)
-     if(interactive()){bossa_interactive(object)}
+
+data(bo.simu.data)
+object <- BossaClust(bo.simu.data)
+if(interactive()){bossa_interactive(object)}
 }
 
 }

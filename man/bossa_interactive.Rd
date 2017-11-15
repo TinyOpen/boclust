@@ -14,7 +14,7 @@ Opens a browser window with an interactive \code{shiny} app and visualize
 all precomputed clusterings.
 }
 \description{
-Runs interactive \code{shiny} session of \code{BOSSA} based on precomputed clusterings.
+Runs interactive \code{shiny} session of \code{BOSSA} based on pre-computed clusterings.
 }
 \examples{
 {

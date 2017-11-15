@@ -1,7 +1,7 @@
 
 #' Opens \code{BOSSA} results in an interactive session in a web browser.
 #'
-#' Runs interactive \code{shiny} session of \code{BOSSA} based on precomputed clusterings.
+#' Runs interactive \code{shiny} session of \code{BOSSA} based on pre-computed clusterings.
 #'
 #' @param object a output of \code{BossaClust} function
 #'

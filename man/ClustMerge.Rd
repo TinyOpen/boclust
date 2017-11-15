@@ -2,7 +2,7 @@
 % Please edit documentation in R/Clust_Method.R
 \name{ClustMerge}
 \alias{ClustMerge}
-\title{Clusr Merge}
+\title{Clust Merge}
 \usage{
 ClustMerge(tree.size, clu.hc, n, overlap.clu, data.simi)
 }

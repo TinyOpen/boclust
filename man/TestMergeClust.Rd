@@ -7,7 +7,7 @@
 TestMergeClust(data, r)
 }
 \arguments{
-\item{data}{A data.frame with two columns of two overlap subclusters.}
+\item{data}{A data.frame with two columns of two overlap sub-clusters.}
 
 \item{r}{A numeric indicating tetrachoric correlation coefficient.}
 }

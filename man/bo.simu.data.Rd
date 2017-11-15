@@ -3,14 +3,14 @@
 \docType{data}
 \name{bo.simu.data}
 \alias{bo.simu.data}
-\title{A data of 300 cells and 660 genes.}
-\format{A dataframe with 300 rows and 660 variables:
+\title{A data of 300 cells and 200 genes.}
+\format{A dataframe with 300 rows and 200 variables:
 \describe{
   \item{a_1_1}{one of the fictitious marker genes}
   ...
   }}
 \description{
-A simulation data used to show the cluster result of sparse and high-dimentional data.
+A simulation data used to show the cluster result of sparse and high-dimension data.
  There are 6 true clusters.
 }
 \keyword{datasets}

@@ -19,7 +19,7 @@ merging, smaller lin leads to larger cluster size.}
 \item{pro.show}{A logical indicator whether show the details of the process.}
 }
 \value{
-A list including two data.frame: overlap subclusters and cluster center for each.
+A list including two data.frame: overlap sub-clusters and cluster center for each.
 }
 \description{
 Do overlap clustering with Bossa similarity in different levels of \code{p}.

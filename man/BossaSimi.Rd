@@ -12,10 +12,10 @@ BossaSimi(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = FALSE,
 
 \item{is.pca}{A logical variable indicating if the Bossa scores should transformed
 to principle components and then calculate the similarity matrix. It is recommended
-when processing the ultra-dimention data.}
+when processing the ultra-dimension data.}
 
 \item{pca.sum.prop}{A numeric indicating how many components should be reserved
-in order to make this propotion of variance. The default is \code{pca.sum.prop =  0.95}.}
+in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.}
 
 \item{fix.pca.comp}{A numeric variable indicating whether choosing the fixed
 number of components or the fixed porpotion of variance and the default is to

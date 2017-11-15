@@ -6,9 +6,9 @@
 #' @param data A data.frame or matrix(\code{n*p}) of original categorical data.
 #' @param is.pca A logical variable indicating if the Bossa scores should transformed
 #' to principle components and then calculate the similarity matrix. It is recommended
-#' when processing the ultra-dimention data.
+#' when processing the ultra-dimension data.
 #' @param pca.sum.prop A numeric indicating how many components should be reserved
-#' in order to make this propotion of variance. The default is \code{pca.sum.prop =  0.95}.
+#' in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.
 #' @param n.comp The number of components of PCA. The default is \code{n.comp = 50}.
 #' @param fix.pca.comp A numeric variable indicating whether choosing the fixed
 #' number of components or the fixed porpotion of variance and the default is to
@@ -75,7 +75,7 @@ BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = F
 
   U.score.non.pca <- U.score
 
-  # Do pca to get small dimention version of U.score
+  # Do pca to get small dimension version of U.score
   if (is.pca) {
     data.pca <- prcomp(U.score)
     if(pro.show) cat("done")
@@ -130,7 +130,7 @@ BossaSimi <- function(data, is.pca = TRUE, pca.sum.prop = 0.95, fix.pca.comp = F
 #' merging, smaller lin leads to larger cluster size.
 #' @param pro.show A logical indicator whether show the details of the process.
 #' @import stats
-#' @return A list including two data.frame: overlap subclusters and cluster center for each.
+#' @return A list including two data.frame: overlap sub-clusters and cluster center for each.
 #' @examples {
 #' data(bo.simu.data)
 #'
@@ -293,7 +293,7 @@ ClustShare <- function(overlap.clu) {
 #' Do a test before merging two overlap clusters. Pairwise comparisons are processed
 #' to show if those two clusters should be merged.
 #' @keywords internal
-#' @param data A data.frame with two columns of two overlap subclusters.
+#' @param data A data.frame with two columns of two overlap sub-clusters.
 #' @param r A numeric indicating tetrachoric correlation coefficient.
 
 TestMergeClust <- function(data, r) {
@@ -364,14 +364,14 @@ TestMergeClust <- function(data, r) {
 #' Determine key features of each overlap clusters.
 #' @param cdata Overlap clustering result.
 #' @param cri A tuning parameter, if p value smaller than cri, then reject
-#' the NULL hypothesis and merge overlap subclusters. And cri can be any numeric less
+#' the NULL hypothesis and merge overlap sub-clusters. And cri can be any numeric less
 #' than \code{1}, if \code{cri = 1} then the criteria will be reset to \code{0.05/N}
-#' (N is the numer of all overlap subcluster), and if \code{cri = 2} then the
+#' (N is the number of all overlap sub-cluster), and if \code{cri = 2} then the
 #' criteria \code{0.05/N(N-1)}.
 #' @keywords internal
 #' @importFrom psych tetrachoric
 #' @return A list including the recommend parameter to cut trees in HC \code{scrit0, scrit1},
-#' the seperate overlap subclusters \code{sep.clu}, and highly similar subclusters \code{mer.clu},
+#' the separate overlap sub-clusters \code{sep.clu}, and highly similar sub-clusters \code{mer.clu},
 #' statistics for merging \code{clu.math.stat}
 
 KeyFeature <- function(cdata, cri, sum.clu) {
@@ -502,7 +502,7 @@ AssignLeftClust <- function(overlap.clu, sum.clu, data.simi, n = n){
 }
 
 
-#' Clusr Merge
+#' Clust Merge
 #'
 #' With every recommended k, merge the overlap clusters depending on the distance
 #' between those.

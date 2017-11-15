@@ -10,14 +10,14 @@ KeyFeature(cdata, cri, sum.clu)
 \item{cdata}{Overlap clustering result.}
 
 \item{cri}{A tuning parameter, if p value smaller than cri, then reject
-the NULL hypothesis and merge overlap subclusters. And cri can be any numeric less
+the NULL hypothesis and merge overlap sub-clusters. And cri can be any numeric less
 than \code{1}, if \code{cri = 1} then the criteria will be reset to \code{0.05/N}
-(N is the numer of all overlap subcluster), and if \code{cri = 2} then the
+(N is the number of all overlap sub-cluster), and if \code{cri = 2} then the
 criteria \code{0.05/N(N-1)}.}
 }
 \value{
 A list including the recommend parameter to cut trees in HC \code{scrit0, scrit1},
-the seperate overlap subclusters \code{sep.clu}, and highly similar subclusters \code{mer.clu},
+the separate overlap sub-clusters \code{sep.clu}, and highly similar sub-clusters \code{mer.clu},
 statistics for merging \code{clu.math.stat}
 }
 \description{

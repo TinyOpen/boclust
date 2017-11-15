@@ -2,7 +2,7 @@
 #'
 #' With the previous calculated similarity matrix or the original categorical
 #' dataframe, the results of both overlap clustering and hierarchical clustering
-#' are obtained with several recommended cluster numbers(k) aftering processing the merge
+#' are obtained with several recommended cluster numbers(k) after processing the merge
 #' cluster step.
 #'
 #' @param data an original categorical data with n observations and p variables.
@@ -19,7 +19,7 @@
 #' merging, smaller lin leads to larger cluster size.
 #' @param is.pca A logical variable indicating if the Bossa scores should transformed
 #' to principle components and then calculate the similarity matrix. It is recommended
-#' when processing the ultra-dimention data.
+#' when processing the ultra-dimension data.
 #' @param pca.sum.prop A numeric indicating how many components should be reserved
 #' in order to make this propotion of variance. The default is \code{pca.sum.prop =  0.95}.
 #' @param n.comp The number of components of PCA. The default is \code{n.comp = 50}.
