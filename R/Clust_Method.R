@@ -11,8 +11,8 @@
 #' in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.
 #' @param n.comp The number of components of PCA. The default is \code{n.comp = 50}.
 #' @param fix.pca.comp A numeric variable indicating whether choosing the fixed
-#' number of components or the fixed porpotion of variance and the default is to
-#' choose fixed porpotion.
+#' number of components or the fixed porportion of variance and the default is to
+#' choose fixed porportion.
 #' @param alpha A power scaling for Bossa scores, representing the weight of
 #' variable sigma value.
 #' @param pro.show A logical indicator whether show the details of the process.
@@ -30,7 +30,7 @@
 #' ## similarity matrix of normalized data
 #' data.simi <- bossa.change$bossa.simi
 #' }
-#' @return An object including Bossa scores, Bossa disimilarity and Bossa similarity(for
+#' @return An object including Bossa scores, Bossa dissimilarity and Bossa similarity(for
 #' \code{\link{OverlapClust}}.
 #' @export
 

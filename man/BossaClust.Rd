@@ -12,7 +12,7 @@ BossaClust(data, data.pre = NULL, alpha = 1, p = c(0.9, 0.75, 0.5),
 \item{data}{an original categorical data with n observations and p variables.}
 
 \item{data.pre}{an list obtained by \code{\link{BossaSimi}} including original
-categorical data, similarity matrix, disimilarity matrix and transformed data,
+categorical data, similarity matrix, dissimilarity matrix and transformed data,
 Bossa scores. It is recommended to calculate the data.pre first and then do
 \code{\link{BossaClust}} in order to save time when trying to change parameters
 of this function.}
@@ -31,7 +31,7 @@ to principle components and then calculate the similarity matrix. It is recommen
 when processing the ultra-dimension data.}
 
 \item{pca.sum.prop}{A numeric indicating how many components should be reserved
-in order to make this propotion of variance. The default is \code{pca.sum.prop =  0.95}.}
+in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.}
 
 \item{n.comp}{The number of components of PCA. The default is \code{n.comp = 50}.}
 
@@ -40,9 +40,9 @@ number of components or the fixed porpotion of variance and the default is to
 choose fixed porpotion.}
 
 \item{cri}{A tuning parameter, if p value smaller than cri, then reject
-the NULL hypothesis and merge overlap subclusters. And cri can be any numeric less
+the NULL hypothesis and merge overlap sub-clusters. And cri can be any numeric less
 than \code{1}, if \code{cri = 1} then the criteria will be reset to \code{0.05/N}
-(N is the numer of all overlap subcluster), and if \code{cri = 2} then the
+(N is the numer of all overlap sub-clusters), and if \code{cri = 2} then the
 criteria \code{0.05/N(N-1)}.}
 
 \item{lintype}{The agglomeration method to be used in \code{\link[stats]{hclust}}.

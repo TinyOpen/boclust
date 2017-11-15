@@ -18,8 +18,8 @@ when processing the ultra-dimension data.}
 in order to make this proportion of variance. The default is \code{pca.sum.prop =  0.95}.}
 
 \item{fix.pca.comp}{A numeric variable indicating whether choosing the fixed
-number of components or the fixed porpotion of variance and the default is to
-choose fixed porpotion.}
+number of components or the fixed porportion of variance and the default is to
+choose fixed porportion.}
 
 \item{n.comp}{The number of components of PCA. The default is \code{n.comp = 50}.}
 
@@ -29,7 +29,7 @@ variable sigma value.}
 \item{pro.show}{A logical indicator whether show the details of the process.}
 }
 \value{
-An object including Bossa scores, Bossa disimilarity and Bossa similarity(for
+An object including Bossa scores, Bossa dissimilarity and Bossa similarity(for
 \code{\link{OverlapClust}}.
 }
 \description{

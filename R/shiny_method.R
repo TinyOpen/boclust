@@ -6,7 +6,7 @@
 #' @param object a output of \code{BossaClust} function
 #'
 #' @return Opens a browser window with an interactive \code{shiny} app and visualize
-#' all precomputed clusterings.
+#' all pre-computed clusterings.
 #' @import ggplot2
 #' @importFrom venn venn
 #' @importFrom d3heatmap renderD3heatmap d3heatmap d3heatmapOutput

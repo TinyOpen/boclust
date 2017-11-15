@@ -11,7 +11,7 @@ bossa_interactive(object)
 }
 \value{
 Opens a browser window with an interactive \code{shiny} app and visualize
-all precomputed clusterings.
+all pre-computed clusterings.
 }
 \description{
 Runs interactive \code{shiny} session of \code{BOSSA} based on pre-computed clusterings.
