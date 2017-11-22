@@ -142,7 +142,7 @@ BossaClust <- function(data, data.pre = NULL, alpha = 1, p = c(0.9, 0.75, 0.5),
   })
 
   # Before Merge: find different variables(genes) and prepare the data for heatmap
-  if(!mer.clu == 0){
+  if(!is.numeric(mer.clu)){
     bef.de.plot.all <- FindBefDe(mer.clu, overlap.clu, U.score.non.pca, cell.name)
     bef.de.plot <- bef.de.plot.all$bef.de.plot
     mer.clu <- bef.de.plot.all$mer.clu

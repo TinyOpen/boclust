@@ -1,6 +1,6 @@
 Package: boclust
 Title: A Clustering Method Based on Boosting on Single Attributes
-Version: 0.1.0
+Version: 0.1.1
 Description: An overlap clustering algorithm for categorical ultra-dimension data.
 Depends: R (>= 3.3)
 License: GPL-2
@@ -12,7 +12,7 @@ Authors@R: c(person("Peng", "Zhang",
              role = c("aut", "cre")))
 LazyData: true
 RoxygenNote: 6.0.1
-biocViews: genefilter(>= 1.56.0)
+biocViews: genefilter (>= 1.56.0)
 Imports:
     reshape2 (>= 1.4.2),
     psych (>= 1.7.3.21),
