@@ -12,7 +12,7 @@ Authors@R: c(person("Peng", "Zhang",
              role = c("aut", "cre")))
 LazyData: true
 RoxygenNote: 6.0.1
-biocViews: genefilter(>= 1.58.1)
+biocViews: genefilter(>= 1.56.0)
 Imports:
     reshape2 (>= 1.4.2),
     psych (>= 1.7.3.21),
@@ -23,5 +23,5 @@ Imports:
     shiny (>= 1.0.5),
     ggplot2 (>= 2.2.1),
     stats,
-    genefilter (>= 1.58.1)
+    genefilter (>= 1.56.0)
 
