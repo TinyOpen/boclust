@@ -157,7 +157,7 @@ BossaClust <- function(data, data.pre = NULL, alpha = 1, p = c(0.9, 0.75, 0.5),
 
   if(dim(data)[2] > 12000) {
     n.pca <- dim(data)[1] * 0.8
-    data.pca <- prcomp(data)$x[,round(n.pca, 0)]
+    data.pca <- prcomp(data)$x[,1:round(n.pca, 0)]
     my.tsne <- Rtsne(data.pca, perplexity = perplexity)
   } else {
     my.tsne <- Rtsne(data, perplexity = perplexity)
