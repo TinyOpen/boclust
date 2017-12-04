@@ -22,6 +22,4 @@ Imports:
     DT (>= 0.2),
     shiny (>= 1.0.5),
     ggplot2 (>= 2.2.1),
-    stats,
-    genefilter
-
+    stats
